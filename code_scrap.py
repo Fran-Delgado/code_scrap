@@ -41,6 +41,8 @@ for linea in z:
 	matches = re.finditer('<td><a', str_linea)
 	matches_positions = [match.start() for match in matches]
 
+	
+
 	if len(matches_positions) == 3:
 		a_0,a_1,a_2= busca_info(3)
 		print(a_0.ljust(70),a_1.ljust(20),a_2.ljust(20))
