@@ -3,6 +3,7 @@
 import requests as req
 from bs4 import BeautifulSoup
 import re
+import time
 
 base = "https://www.heubach-edelmetalle.de"
 
@@ -47,20 +48,28 @@ for contador,elemento in enumerate(catalogo):
     print(contador,elemento)
 
 # Nos centraremos por ahora en las categorías 1,2 y 4
-print("Monedas de oro :\n")
-sopa = recuperar_sopa(catalogo[1])
-matches_positions,str_muestra = filtrar_sopa(sopa,'mt-xs-2','href="')
-categ_mone_oro=busca_categorias('/katalog','title')
-for elemento in categ_mone_oro: print(elemento)
+# print("Monedas de oro :\n")
+# sopa = recuperar_sopa(catalogo[1])
+# matches_positions,str_muestra = filtrar_sopa(sopa,'mt-xs-2','href="')
+# categ_mone_oro=busca_categorias('/katalog','title')
+# for elemento in categ_mone_oro: print(elemento)
 
-print("Lingotes de oro :\n")
-sopa = recuperar_sopa(catalogo[2])
-matches_positions,str_muestra = filtrar_sopa(sopa,'mt-xs-2','href="')
-categ_lingo_oro=busca_categorias('/katalog','title')
-for elemento in categ_lingo_oro: print(elemento)
+# print("Lingotes de oro :\n")
+# sopa = recuperar_sopa(catalogo[2])
+# matches_positions,str_muestra = filtrar_sopa(sopa,'mt-xs-2','href="')
+# categ_lingo_oro=busca_categorias('/katalog','title')
+# for elemento in categ_lingo_oro: print(elemento)
 
 print("Monedas de plata :\n")
 sopa = recuperar_sopa(catalogo[4])
 matches_positions,str_muestra = filtrar_sopa(sopa,'mt-xs-2','href="')
 categ_mone_plata=busca_categorias('/katalog','title')
 for elemento in categ_mone_plata: print(elemento)
+print(categ_mone_plata)
+
+for web in categ_mone_plata:
+    sopa=recuperar_sopa(web)
+    matches_positions,str_muestra = filtrar_sopa(sopa,'mt-xs-2','href="')
+    categ_mone_plata=busca_categorias('/katalog','title')
+    for elemento in categ_mone_plata: print(elemento)
+    time.sleep(10)
